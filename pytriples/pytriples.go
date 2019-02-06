@@ -18,9 +18,7 @@ func MainPytriples() {
 }
 
 type pytriples struct {
-	x int
-	y int
-	z int
+	x, y, z int
 }
 
 func getPytriples(do chan bool, result chan pytriples) {
@@ -30,13 +28,11 @@ func getPytriples(do chan bool, result chan pytriples) {
 				switch <-do {
 				case true:
 					if x*x+y*y == z*z {
-						p := pytriples{x, y, z}
-						result <- p
+						result <- pytriples{x, y, z}
 					} else {
 						do <- true
 					}
 				case false:
-					fmt.Println("exit")
 					return
 				}
 			}
