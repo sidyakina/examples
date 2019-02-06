@@ -38,12 +38,12 @@ func Test_getPytriples(t *testing.T) {
 //goos: windows
 //goarch: amd64
 //pkg: github.com/sidyakina/Examples/pytriples
-//Benchmark_getPytriples-4   	      50	  22741302 ns/op	     358 B/op	       2 allocs/op
+//Benchmark_getPytriples-4   	     300	   4590262 ns/op	     315 B/op	       2 allocs/op
 func Benchmark_getPytriples(b *testing.B) {
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
 			stop := make(chan bool, 1)
-			result := make(chan pytriples, 5)
+			result := make(chan pytriples, 4)
 			go getPytriples(stop, result)
 			for i := 0; i < 100; i++ {
 				<-result
